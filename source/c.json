@@ -2,7 +2,9 @@
 	{
 		"name":"header",
 		"ref":"G1",
-    "filter": ["def fil(source):\n  return '\\n'.join(source.split('\\n')[0:6])"],
+		"filter":[
+			"def fil(source):\n  return '\\n'.join(source.split('\\n')[0:6])"
+		],
 		"should_not":null,
 		"should":"\/\\*[\r\n]\\*\\*\\sETNA\\sPROJECT\\,\\s[0-9]{2}\/[0-9]{2}\/202[0-9]{1}\\sby\\s{{login}}[\r\n]\\*\\*\\s{{exercice}}[\r\n]\\*\\*\\sFile\\sdescription:[\r\n]\\*\\*[\t\\s]*.*[\r\n]\\*\/",
 		"var":[
@@ -13,7 +15,9 @@
 	{
 		"name":"line before func",
 		"ref":"G2",
-    "filter": ["def fil(source):\n  return '.\\n\\n' + source"],
+		"filter":[
+			"def fil(source):\n  return '.\\n\\n' + source"
+		],
 		"should_not":"[\r\n]{0,}(unsigned|signed)?(void|int|char|short|long|float|double)\\s+(\\w+)[.^=]*\\s*\\([^)]*\\)\\s*\\{\\s*",
 		"should":".\\s*[\r\n]{2}(unsigned|signed)?(void|int|char|short|long|float|double)\\s+(\\w+)[.^=]*\\s*\\([^)]*\\)\\s*\\{\\s*",
 		"var":null
@@ -21,16 +25,18 @@
 	{
 		"name":"max column",
 		"ref":"F3",
-    "filter": ["def fil(source):\n  return source.replace('\\t', '  ')"],
+		"filter":[
+			"def fil(source):\n  return source.replace('\\t', '  ')"
+		],
 		"should_not":".{81,}",
-		"should": null,
+		"should":null,
 		"var":null
 	},
 	{
 		"name":"max_line",
 		"ref":"F4",
-    "filter": null,
+		"filter":null,
 		"script":"def fun(source):\n        limit = 20\n        oups = 0\n        hover = 0\n        ins = 0\n        out = 0\n        i = 0\n        while(i < len(source)):\n            if source[i] == '{':\n                ins += 1\n            elif source[i] == '}':\n                out += 1\n            if ins - out > 0:\n                if source[i] == '\\n':\n                    hover +=1\n            else:\n                if hover > limit:\n                    oups += hover - limit - 1\n                hover = 0\n            i += 1\n        return oups",
-    "var": null
+		"var":null
 	}
 ]
